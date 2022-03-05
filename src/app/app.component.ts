@@ -26,9 +26,11 @@ export class AppComponent {
   selectOpen: ConstrainBoolean
   imgSelect!: string
   nameAnimationDesple!: string
-//datos del api
-  dataPaises: any
-//booleanos para mostrar los paises y para mostrar la descripcion
+  //datos del api
+  dataPaises: any//este es el objeto con toda la informacion
+  paises: any//este es el que vamos a mostrar y editar
+
+  //booleanos para mostrar los paises y para mostrar la descripcion
   descripcionPais: boolean
   listaPaises: boolean
   //variables para el contenido de la descripcion del pais
@@ -44,10 +46,17 @@ export class AppComponent {
     this.descripcionPais = false
     this.listaPaises = true
 
+    this.MensajeTarjetas='Loading...'
     this.service.GetRegions().subscribe((response: any) => {
       this.dataPaises = response
+      this.paises = this.dataPaises
+      this.MensajeTarjetas=''
+
     })
+
   }
+
+
   clickModeColor() {
     if (this.darkmode === false) {
       //bacgrounds
@@ -107,6 +116,8 @@ export class AppComponent {
     setTimeout(() => {
       this.selectOpen = false
     }, 500);
+    this.paises = this.dataPaises
+
   }
   Africa() {
     this.nameAnimationDesple = 'reverseanimationDesple'
@@ -115,7 +126,15 @@ export class AppComponent {
     setTimeout(() => {
       this.selectOpen = false
     }, 500);
+    this.paises = []
+    for (const paisFiltro of this.dataPaises) {
+      if (paisFiltro.region==='Africa') {
+        this.paises.push(paisFiltro)
+      }
+    }
+    this.busqueda=''
   }
+
   America() {
     this.nameAnimationDesple = 'reverseanimationDesple'
     this.imgSelect = '../assets/chevron-up-outline.svg'
@@ -123,6 +142,13 @@ export class AppComponent {
     setTimeout(() => {
       this.selectOpen = false
     }, 500);
+    this.paises = []
+    for (const paisFiltro of this.dataPaises) {
+      if (paisFiltro.region==='Americas') {
+        this.paises.push(paisFiltro)
+      }
+    }
+    this.busqueda=''
   }
   Asia() {
     this.nameAnimationDesple = 'reverseanimationDesple'
@@ -131,6 +157,13 @@ export class AppComponent {
     setTimeout(() => {
       this.selectOpen = false
     }, 500);
+    this.paises = []
+    for (const paisFiltro of this.dataPaises) {
+      if (paisFiltro.region==='Asia') {
+        this.paises.push(paisFiltro)
+      }
+    }
+    this.busqueda=''
   }
   Europe() {
     this.nameAnimationDesple = 'reverseanimationDesple'
@@ -139,6 +172,13 @@ export class AppComponent {
     setTimeout(() => {
       this.selectOpen = false
     }, 500);
+    this.paises = []
+    for (const paisFiltro of this.dataPaises) {
+      if (paisFiltro.region==='Europe') {
+        this.paises.push(paisFiltro)
+      }
+    }
+    this.busqueda=''
   }
   Oceania() {
     this.nameAnimationDesple = 'reverseanimationDesple'
@@ -148,40 +188,91 @@ export class AppComponent {
     setTimeout(() => {
       this.selectOpen = false
     }, 500);
+    this.paises = []
+    for (const paisFiltro of this.dataPaises) {
+      if (paisFiltro.region==='Oceania') {
+        this.paises.push(paisFiltro)
+      }
+    }
+    this.busqueda=''
   }
 
-  name!:string
-  nameNative!:string
-  population!:string
-  region!:string
-  subRegion!:string
-  capital!:string
-  TopLevel!:string
-  currencies!:string
-  lenguages!:string
-  bandera!:string
-  detallePais(namePais:string) {
-    let i=0
+  name!: string
+  nameNative!: string
+  population!: string
+  region!: string
+  subRegion!: string
+  capital!: string
+  TopLevel!: string
+  currencies!: string
+  lenguages!: string
+  bandera!: string
+  bordes: string[] = []
+  detallePais(namePais: string) {
+    this.bordes = []
+    let i = 0
     for (const data of this.dataPaises) {
-      if (data.name===namePais){
-        this.name=data.name
-        this.nameNative=data.nativeName
-        this.population=data.population
-        this.region=data.region
-        this.subRegion=data.subregion
-        this.capital=data.capital
-        this.TopLevel=data.topLevelDomain
-        this.currencies=data.currencies[i].name
-        this.lenguages=data.languages[i].name
-        this.bandera=data.flags.svg
+      if (data.name === namePais) {
+        this.name = data.name
+        this.nameNative = data.nativeName
+        this.population = data.population
+        this.region = data.region
+        this.subRegion = data.subregion
+        this.capital = data.capital
+        this.TopLevel = data.topLevelDomain
+        this.currencies = data.currencies[i].name
+        this.lenguages = data.languages[i].name
+        this.bandera = data.flags.svg
+        if (data.borders != undefined) {
+          for (const bordesIterator of data.borders) {
+            for (const consultabordesData of this.dataPaises) {
+              if (consultabordesData.alpha3Code === bordesIterator) {
+                this.bordes.push(consultabordesData.name)
+              }
+            }
+          }
+        } else {
+          this.bordes.push("No data")
+
+        }
+
+      } else {
+        if (namePais == 'No data') {
+          this.bordes = ["No data"]
+
+        }
       }
     }
     this.descripcionPais = true
     this.listaPaises = false
   }
-  RegresarAListas(){
-    
+  RegresarAListas() {
+
     this.descripcionPais = false
     this.listaPaises = true
+  }
+
+  busqueda: string = ''
+  MensajeTarjetas: string = ''
+  filtrarBusqueda() {
+    this.txtSelect = 'Filter by Region'
+    setTimeout(() => {
+      if (this.busqueda != '') {
+        this.paises = []
+        for (const paisBusqueda of this.dataPaises) {
+          if (paisBusqueda.name.includes(this.busqueda)) {
+            this.paises.push(paisBusqueda)
+            this.MensajeTarjetas = ''
+          } else {
+            if (this.paises.length===0) {
+              console.log(this.paises)
+            this.MensajeTarjetas = 'No data'
+            }
+          }
+        }
+      } else {
+        this.paises = this.dataPaises
+      }
+    }, 100);
   }
 }

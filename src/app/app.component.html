@@ -16,7 +16,7 @@
                 <!--Buscador -->
                 <div class="search" [ngStyle]="{'background-color':backgroundElemts,'animation-name':animationColor}">
                     <img [ngStyle]="{'filter':filterImg}" src="../assets/search-outline.svg" alt="search">
-                    <input [ngStyle]="{'color':fontColor}" placeholder="Search for a country..." type="text">
+                    <input [(ngModel)]="busqueda" (keydown)="filtrarBusqueda()" [ngStyle]="{'color':fontColor}" placeholder="Search for a country..." type="text">
                 </div>
                 <!--filtro por region-->
                 <div class="select-container">
@@ -35,8 +35,11 @@
                 </div>
             </div>
             <!--tarjetas de paises-->
+            <div class="MensajeAlerta">
+                <p>{{MensajeTarjetas}}</p>
+            </div>
             <div class="content-tarjetas">
-                <div class="tarjetas" *ngFor="let data of dataPaises" [ngStyle]="{'background-color':backgroundElemts,'animation-name':animationColor}">
+                <div class="tarjetas" *ngFor="let data of paises" [ngStyle]="{'background-color':backgroundElemts,'animation-name':animationColor}">
                     <div class="contenedor-img-tarjetas">
                         <img (click)="detallePais(data.name)" src="{{data.flags.svg}}" alt="bandera">
                     </div>
@@ -47,6 +50,7 @@
                         <p><span [ngStyle]="{'color':fontColor}">Capital: </span>{{data.capital}}</p>
                     </div>
                 </div>
+
             </div>
         </div>
         <!--Descripcion detalle pais-->
@@ -76,10 +80,13 @@
 
                         </div>
                     </div>
-                    <span>Border Countries: </span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <div class="conten-bordes">
+                        <span>Border Countries: </span>
+                        <div class="paises-bordes">
+                            <span (click)="detallePais(IteratorBordes)" [ngStyle]="{'background-color':backgroundElemts,'animation-name':animationColor}" class="btn-bordes-paises" *ngFor="let IteratorBordes of bordes">{{IteratorBordes}}</span>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

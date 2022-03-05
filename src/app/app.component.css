@@ -57,23 +57,8 @@ main {
     animation-duration: 0.5s;
 }
 
-.funciones-search-filter {
-    display: flex;
-    flex-direction: row;
-}
-
 
 /* main search*/
-
-.search {
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    width: 30rem;
-    padding-left: 1.5rem;
-    animation-duration: 0.5s;
-    border-radius: 0.4rem;
-}
 
 .search img {
     width: 1.5rem;
@@ -147,27 +132,16 @@ main {
 
 /*main tarjetas paises*/
 
-.content-tarjetas {
-    margin-top: 3rem;
-    display: grid;
-    grid-template-columns: 20% 20% 20% 20%;
-    column-gap: 6.5%;
-    row-gap: 4rem;
-}
-
-.tarjetas {
-    border-radius: 0.4rem;
-    animation-duration: 0.5s;
-    box-shadow: 0px 0px 30px -15px hsl(200, 15%, 8%);
-}
-
-.tarjetas:hover {
-    margin-top: -0.5rem;
-}
-
 .contenedor-img-tarjetas {
     width: 100%;
     height: 10rem;
+}
+
+.tarjetas .contenedor-img-tarjetas img:hover {
+    width: 104%;
+    margin-left: -2%;
+    height: 104%;
+    margin-top: -2%;
 }
 
 .content-tarjetas div img {
@@ -197,17 +171,8 @@ main {
 
 /*Detalles paises*/
 
-.pais-detalle {
-    display: flex;
-    flex-direction: row;
-}
-
 .pais-detalle div p {
     color: hsl(0, 0%, 52%);
-}
-
-.imgDetalle {
-    width: 50%;
 }
 
 .imgDetalle img {
@@ -221,10 +186,6 @@ main {
     width: 50%;
 }
 
-.margin-left {
-    margin-left: auto;
-}
-
 .back {
     display: flex;
     flex-direction: row;
@@ -232,6 +193,7 @@ main {
     justify-content: center;
     border-radius: 0.4rem;
     box-shadow: 0px 0px 25px -10px hsl(200, 15%, 8%);
+    animation-duration: 0.5s;
     margin-bottom: 3rem;
     cursor: pointer;
 }
@@ -239,6 +201,139 @@ main {
 .back img {
     margin-right: 0.8rem;
     width: 2rem;
+}
+
+.conten-bordes {
+    display: flex;
+    flex-direction: column;
+}
+
+.paises-bordes {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 1rem;
+    row-gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-bordes-paises {
+    border-radius: 0.4rem;
+    box-shadow: 0px 0px 25px -10px hsl(200, 15%, 8%);
+    cursor: pointer;
+    padding: 0.4rem;
+    animation-duration: 0.5s;
+}
+
+.MensajeAlerta {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 360px) {
+    .funciones-search-filter {
+        display: flex;
+        flex-direction: column;
+    }
+    .search {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        width: auto;
+        padding-left: 1.5rem;
+        animation-duration: 0.5s;
+        border-radius: 0.4rem;
+    }
+    .select-container {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+    .content-tarjetas {
+        margin-top: 3rem;
+        display: flex;
+        column-gap: 6.5%;
+        row-gap: 2rem;
+        flex-direction: column;
+        align-items: center;
+    }
+    .tarjetas {
+        border-radius: 0.4rem;
+        animation-duration: 0.5s;
+        box-shadow: 0px 0px 30px -15px hsl(200, 15%, 8%);
+        width: 80%;
+    }
+    .pais-detalle {
+        display: flex;
+        flex-direction: column;
+    }
+    .imgDetalle {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    .margin-left {
+        margin-left: 0;
+    }
+    .paises-bordes {
+        display: grid;
+        grid-template-columns: 27vw 27vw 27vw;
+        column-gap: 1rem;
+        row-gap: 1rem;
+        margin-top: 1rem;
+    }
+}
+
+@media (min-width: 1281px) {
+    .funciones-search-filter {
+        display: flex;
+        flex-direction: row;
+    }
+    .search {
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        width: 35vw;
+        padding-left: 1.5rem;
+        animation-duration: 0.5s;
+        border-radius: 0.4rem;
+    }
+    .select-container {
+        margin-left: auto;
+        margin-top: 0;
+    }
+    .content-tarjetas {
+        margin-top: 3rem;
+        display: grid;
+        grid-template-columns: 20% 20% 20% 20%;
+        column-gap: 6.5%;
+        row-gap: 4rem;
+    }
+    .tarjetas {
+        border-radius: 0.4rem;
+        animation-duration: 0.5s;
+        box-shadow: 0px 0px 30px -15px hsl(200, 15%, 8%);
+        width: 100%;
+    }
+    .pais-detalle {
+        display: flex;
+        flex-direction: row;
+    }
+    .imgDetalle {
+        width: 50%;
+        display: flex;
+        justify-content: normal;
+    }
+    .margin-left {
+        margin-left: auto;
+    }
+    .paises-bordes {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        column-gap: 1rem;
+        row-gap: 1rem;
+        margin-top: 1rem;
+    }
 }
 
 
