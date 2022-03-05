@@ -1,0 +1,87 @@
+<div class="container" [ngStyle]="{'color':fontColor}">
+    <!--Header cabezera-->
+    <header [ngStyle]="{'background-color':backgroundElemts,'animation-name':animationColor}">
+        <div class="center-content-header">
+            <h2>Where in the world?</h2>
+            <div role="button" class="dark-ligth" (click)="clickModeColor()">
+                <img src="{{imgModeColor}}" alt="moon">
+                <p>{{txtModeColor}}</p>
+            </div>
+        </div>
+    </header>
+    <!--Contenido main-->
+    <main [ngStyle]="{'background-color':backgroundMain,'animation-name':animationColorMain}">
+        <div class="center-content-main" *ngIf="listaPaises">
+            <div class="funciones-search-filter">
+                <!--Buscador -->
+                <div class="search" [ngStyle]="{'background-color':backgroundElemts,'animation-name':animationColor}">
+                    <img [ngStyle]="{'filter':filterImg}" src="../assets/search-outline.svg" alt="search">
+                    <input [ngStyle]="{'color':fontColor}" placeholder="Search for a country..." type="text">
+                </div>
+                <!--filtro por region-->
+                <div class="select-container">
+                    <div [ngStyle]="{'background-color':backgroundElemts,'animation-name':animationColor}" (click)="openSelect()" class="select-region">
+                        <p>{{txtSelect}}</p>
+                        <img [ngStyle]="{'filter':filterImg}" src="{{imgSelect}}" alt="icon">
+                    </div>
+                    <div [ngStyle]="{'background-color':backgroundElemts,'animation-name':nameAnimationDesple}" class="selectDesple" *ngIf="selectOpen">
+                        <p (click)="filterByRegion()">Filter by Region</p>
+                        <p (click)="Africa()">Africa</p>
+                        <p (click)="America()">America</p>
+                        <p (click)="Asia()">Asia</p>
+                        <p (click)="Europe()">Europe</p>
+                        <p (click)="Oceania()">Oceania</p>
+                    </div>
+                </div>
+            </div>
+            <!--tarjetas de paises-->
+            <div class="content-tarjetas">
+                <div class="tarjetas" *ngFor="let data of dataPaises" [ngStyle]="{'background-color':backgroundElemts,'animation-name':animationColor}">
+                    <div class="contenedor-img-tarjetas">
+                        <img (click)="detallePais(data.name)" src="{{data.flags.svg}}" alt="bandera">
+                    </div>
+                    <div class="contenedor-txt-tarjetas">
+                        <p [ngStyle]="{'color':fontColor}" class="name-pais">{{data.name}}</p>
+                        <p><span [ngStyle]="{'color':fontColor}">population: </span>{{data.population}}</p>
+                        <p><span [ngStyle]="{'color':fontColor}">Region: </span>{{data.region}}</p>
+                        <p><span [ngStyle]="{'color':fontColor}">Capital: </span>{{data.capital}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Descripcion detalle pais-->
+        <div class="center-content-main" *ngIf="descripcionPais">
+            <div [ngStyle]="{'background-color':backgroundElemts,'animation-name':animationColor}" class="back" (click)="RegresarAListas()">
+                <img [ngStyle]="{'filter':filterImg}" src="../assets/arrow-back-outline.svg" alt="back">
+                <p>Back</p>
+            </div>
+            <div class="pais-detalle">
+                <div class="imgDetalle">
+                    <img src="{{bandera}}" alt="bandera">
+                </div>
+                <div class="infoDetalle">
+                    <h1>{{name}}</h1>
+                    <div class="pais-detalle">
+                        <div>
+                            <p><span [ngStyle]="{'color':fontColor}">Native Name: </span>{{nameNative}}</p>
+                            <p><span [ngStyle]="{'color':fontColor}">Population: </span>{{population}}</p>
+                            <p><span [ngStyle]="{'color':fontColor}">Region: </span>{{region}}</p>
+                            <p><span [ngStyle]="{'color':fontColor}">Sub Region: </span>{{subRegion}}</p>
+                            <p><span [ngStyle]="{'color':fontColor}">capital: </span>{{capital}}</p>
+                        </div>
+                        <div class="margin-left">
+                            <p><span [ngStyle]="{'color':fontColor}">Top Level Domain: </span>{{TopLevel}}</p>
+                            <p><span [ngStyle]="{'color':fontColor}">Currencies: </span>{{currencies}}</p>
+                            <p><span [ngStyle]="{'color':fontColor}">Languages: </span>{{lenguages}}</p>
+
+                        </div>
+                    </div>
+                    <span>Border Countries: </span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
