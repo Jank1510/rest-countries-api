@@ -1,8 +1,11 @@
 # RestCountriesApi
 RestCountriesApi CHALLENGE
 
-# Link
+# Link:
 https://jank1510.github.io/rest-countries-api/
+
+# Descripción:
+Interactive web application that allows us to detail the information and explore among the 250 countries offered by [REST Countries V2 API](https://restcountries.com/v2/all)
 
 # Preview Image:
 <p align='center'> 
