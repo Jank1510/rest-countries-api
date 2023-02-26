@@ -16,7 +16,7 @@
 - GitHub - [@jank1510](https://github.com/Jank1510)
 - Linkedin - [Jehan Carlos Hurtado Guerrero](https://www.linkedin.com/in/jehan-carlos-hurtado-guerrero-b250b3201/) 
 
-**To do this challenge, you need a basic understanding of HTML CSS JavaScript, and Angular.**
+**To do this challenge, you need a basic understanding of HTML CSS JavaScript API, and Angular.**
 
 ## Description
 Interactive web application that allows us to detail the information and explore among the 250 countries offered by [REST Countries V2 API](https://restcountries.com/v2/all)
