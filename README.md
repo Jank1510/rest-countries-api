@@ -18,7 +18,7 @@
 
 **To do this challenge, you need a basic understanding of HTML CSS JavaScript, and Angular.**
 
-# Description:
+## Description
 Interactive web application that allows us to detail the information and explore among the 250 countries offered by [REST Countries V2 API](https://restcountries.com/v2/all)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
